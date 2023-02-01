@@ -554,8 +554,7 @@ def plot_coord_data(df, y='l1', save_to=None, suptitle=None, x='width', hue='mod
         ax.set_ylim([ymin, ymax])
     if suptitle:
         plt.suptitle(suptitle)
-    # tight_layout(plt)
-    plt.tight_layout()
+    tight_layout(plt)
     if save_to is not None:
         plt.savefig(save_to)
         print(f'coord check plot saved to {save_to}')
