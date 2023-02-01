@@ -16,9 +16,6 @@ __BSH_COMMENT__ = '''\
 '''
 
 def get_shapes(model):
-    # If you want to implement a custom shapes function, you can use this name
-    if hasattr(model, "get_shapes"):
-        return model.get_shapes()
     return {name: param.shape for name, param in model.named_parameters()}
 
 def get_infshapes(model):
@@ -36,7 +33,7 @@ def save_base_shapes(model_or_shapes, file):
     s = __BSH_COMMENT__ + s
     with open(file, 'w') as f:
         f.write(s)
-    
+
 def load_base_shapes(filename):
     '''Get a dict of `InfShape` from a filename.'''
     with open(filename, 'r') as f:
@@ -169,7 +166,7 @@ def set_base_shapes(model, base, rescale_params=True, delta=None, savefile=None,
             assuming the model is initialized using the default pytorch init (or
             He initialization etc that scale the same way with fanin): If True
             (default), rescales parameters to have the correct (μP) variances.
-        do_assert: 
+        do_assert:
     Output:
         same object as `model`, after setting the `infshape` attribute of each parameter.
     '''
